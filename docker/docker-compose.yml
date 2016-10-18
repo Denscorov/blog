@@ -1,0 +1,35 @@
+blog_app:
+    container_name: blog_app
+    image: busybox
+    volumes:
+        - ../app:/var/www/app/
+
+blog_nginx:
+    container_name: blog_nginx
+    build: builds/nginx
+    volumes_from:
+        - blog_app
+    links:
+        - blog_php:php
+    volumes:
+        - ./logs/nginx:/var/log/nginx
+
+blog_php:
+    container_name: blog_php
+    build: builds/php-fpm
+    volumes_from:
+        - blog_app
+    links:
+        - blog_mysql:mysql
+    working_dir: /var/www/app
+
+blog_mysql:
+    container_name: blog_mysql
+    image: mysql:5.6
+    volumes:
+        - ./mysql:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: db
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
