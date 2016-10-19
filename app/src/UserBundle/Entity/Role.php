@@ -3,6 +3,7 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
  * Role
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\RoleRepository")
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var int
@@ -62,5 +63,11 @@ class Role
     {
         return $this->name;
     }
+
+    public function getRole()
+    {
+        return $this->getName();
+    }
+
 }
 
