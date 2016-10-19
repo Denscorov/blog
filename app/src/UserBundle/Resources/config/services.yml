@@ -1,3 +1,1 @@
 services:
-    user_bundle.service.user_provedir:
-        class: Userbundle\Security\UserProvider

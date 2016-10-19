@@ -7,20 +7,20 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:
-                        password: $2y$12$jCQgT76X8coU.ripciemm.MZS89SVeWdQ0WCTbpRoEMVZg45gVuGK
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: $2y$12$7d2KGi/nuscCXW5I4qLpDOdxIj2NsNFscTbAqFyjfPTPG1yHq3eAe
-                        roles: 'ROLE_ADMIN'
+#        webservice:
+#            id: custom_provider
+        custom_provider:
+            entity:
+                class: UserBundle:User
+                property: username
+
+#    encoders:
+#        UserBundle\Entity\User:
+#            algorithm: bcrypt
+#            cost: 12
 
     encoders:
-        Symfony\Component\Security\Core\User\User:
-            algorithm: bcrypt
-            cost: 12
+        UserBundle\Entity\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -29,6 +29,8 @@ security:
             security: false
 
         main:
+            pattern: ^/
+            provider: custom_provider
             anonymous: ~
             form_login:
                 login_path: login
