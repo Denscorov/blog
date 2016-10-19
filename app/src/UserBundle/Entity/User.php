@@ -74,9 +74,13 @@ class User implements UserInterface, EquatableInterface
     private $posts;
 
 
-    public function __construct()
+    public function __construct($username, $password, $salt, array $roles)
     {
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->username = $username;
+        $this->password = $password;
+        $this->salt = $salt;
+        $this->roles = $roles;
+
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
