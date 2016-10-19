@@ -217,7 +217,23 @@ class User implements UserInterface, EquatableInterface
 
     public function isEqualTo(UserInterface $user)
     {
-        // TODO: Implement isEqualTo() method.
+        if (!$user instanceof User) {
+            return false;
+        }
+
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->salt !== $user->getSalt()) {
+            return false;
+        }
+
+        if ($this->username !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function eraseCredentials()
@@ -258,11 +274,11 @@ class User implements UserInterface, EquatableInterface
     /**
      * Add post
      *
-     * @param \UserBundle\Entity\Post $post
+     * @param Post $post
      *
      * @return User
      */
-    public function addPost(\UserBundle\Entity\Post $post)
+    public function addPost(Post $post)
     {
         $this->posts[] = $post;
 
@@ -272,9 +288,9 @@ class User implements UserInterface, EquatableInterface
     /**
      * Remove post
      *
-     * @param \UserBundle\Entity\Post $post
+     * @param Post $post
      */
-    public function removePost(\UserBundle\Entity\Post $post)
+    public function removePost(Post $post)
     {
         $this->posts->removeElement($post);
     }

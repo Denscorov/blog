@@ -1,4 +1,3 @@
 services:
-#    user.example:
-#        class: UserBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    user_bundle.service.user_provedir:
+        class: Userbundle\Security\UserProvider
