@@ -1,6 +1,7 @@
 FROM php:5.6-fpm
 
 ADD php.ini /usr/local/etc/php/conf.d/
+ADD .bashrc ~/.bashrc
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
