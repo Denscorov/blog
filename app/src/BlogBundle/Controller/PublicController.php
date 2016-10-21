@@ -1,17 +1,17 @@
 <?php
 
-namespace SDK\SDKBundle\Controller;
+namespace BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class PublicController extends Controller
 {
     /**
      * @Route("/")
      */
     public function indexAction()
     {
-        return $this->render('SDKBundle:Default:index.html.twig');
+        return $this->render('BlogBundle:Page:index.html.twig');
     }
 }

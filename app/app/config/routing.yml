@@ -1,8 +1,7 @@
-sdk:
-    resource: "@SDKBundle/Controller/"
+blog:
+    resource: "@BlogBundle/Controller/"
     type:     annotation
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+logout:
+    path: /logout

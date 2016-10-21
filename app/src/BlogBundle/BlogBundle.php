@@ -1,9 +1,9 @@
 <?php
 
-namespace SDK\SDKBundle;
+namespace BlogBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SDKBundle extends Bundle
+class BlogBundle extends Bundle
 {
 }
