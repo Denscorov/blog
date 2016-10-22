@@ -7,12 +7,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class PublicController extends Controller
 {
+
     /**
      * @Route("/", name="home")
      */
     public function indexAction()
     {
-        return $this->render('BlogBundle:Public:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('BlogBundle:Category')->findBy([],[],5);
+        return $this->render('BlogBundle:Public:index.html.twig',[
+            'categories' => $categories
+        ]);
     }
 
     /**

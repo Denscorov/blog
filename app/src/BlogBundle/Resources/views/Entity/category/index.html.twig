@@ -8,7 +8,8 @@
             <div class="col-md-3">
                 <div class="item">
                     <h2><a href="{{ path('category_show', {'id':category.id}) }}">{{ category.title|title }}</a></h2>
-                    <span class="small">{{ category.createAt|date('Y-m-d H:i:s') }}</span>
+                    <p class="small">{{ category.createAt|date('d-m-Y H:i:s') }}</p>
+                    <p class="small">{{ category.updateAt|date('d-m-Y H:i:s') }}</p>
                     {% if category.parent %}
                         <p>Parent: <a href="{{ path('category_show',{'id':category.parent.id}) }}"
                                       class="small">{{ category.parent|title }}</a></p>

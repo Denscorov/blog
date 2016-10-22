@@ -2,8 +2,11 @@ p, h1, h2, h3{
     margin: 0;
 }
 
-.section{
+body{
     background: #1b6d85;
+}
+
+.section{
     color: #fff;
     padding: 20px 0;
 }
