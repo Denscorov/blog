@@ -1,0 +1,18 @@
+p, h1, h2, h3{
+    margin: 0;
+}
+
+.section{
+    background: #1b6d85;
+    color: #fff;
+    padding: 20px 0;
+}
+.section .section-head, .section .section-body{
+    padding: 0px 20px;
+    background: #24a0c1;
+}
+.section .section-body{
+    background: #134758;
+    padding: 10px 20px;
+    margin: 0;
+}
