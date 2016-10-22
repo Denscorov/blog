@@ -16,3 +16,14 @@ p, h1, h2, h3{
     padding: 10px 20px;
     margin: 0;
 }
+input{
+    color: #1b6d85;
+}
+.item{
+    background: #0e3743;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+.item a{
+    color: #8feeff;
+}

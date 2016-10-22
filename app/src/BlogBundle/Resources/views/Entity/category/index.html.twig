@@ -1,45 +1,73 @@
 {% extends 'BlogBundle::base.html.twig' %}
-
-{% block content %}
+{% block head %}
     <h1>Category list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Createat</th>
-                <th>Updateat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{% endblock %}
+{% block content %}
+    <div class="row">
         {% for category in categories %}
-            <tr>
-                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
-                <td>{{ category.title }}</td>
-                <td>{{ category.description }}</td>
-                <td>{% if category.createAt %}{{ category.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if category.updateAt %}{{ category.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col-md-3">
+                <div class="item">
+                    <h2><a href="{{ path('category_edit', {'id':category.id}) }}">{{ category.title|title }}</a></h2>
+                    <span class="small">{{ category.createAt|date('Y-m-d H:i:s') }}</span>
+                    {% if category.parent %}
+                        <p>Parent: <a href="{{ path('category_show',{'id':category.parent.id}) }}" class="small">{{ category.parent|title }}</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('category_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                    {% endif %}
+                    {% if category.children|length > 0 %}
+                        <p>Children:
+                            {% spaceless %}
+                                {% for child in category.children %}
+                                    <a href="{{ path('category_show', {'id':child.id}) }}">{{ child.title|title }}</a>{% if not loop.last %}<span>, </span>{% endif %}
+                                {% endfor %}
+                            {% endspaceless %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-md-12">
+            <a class="btn btn-success" href="{{ path('category_new') }}">Create a new entry</a>
+        </div>
+    </div>
+
+
+    {#<table>#}
+    {#<thead>#}
+    {#<tr>#}
+    {#<th>Id</th>#}
+    {#<th>Title</th>#}
+    {#<th>Description</th>#}
+    {#<th>Createat</th>#}
+    {#<th>Updateat</th>#}
+    {#<th>Actions</th>#}
+    {#</tr>#}
+    {#</thead>#}
+    {#<tbody>#}
+    {#{% for category in categories %}#}
+    {#<tr>#}
+    {#<td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>#}
+    {#<td>{{ category.title }}</td>#}
+    {#<td>{{ category.description }}</td>#}
+    {#<td>{% if category.createAt %}{{ category.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+    {#<td>{% if category.updateAt %}{{ category.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+    {#<td>#}
+    {#<ul>#}
+    {#<li>#}
+    {#<a href="{{ path('category_show', { 'id': category.id }) }}">show</a>#}
+    {#</li>#}
+    {#<li>#}
+    {#<a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>#}
+    {#</li>#}
+    {#</ul>#}
+    {#</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+    {#<li>#}
+    {#<a href="{{ path('category_new') }}">Create a new entry</a>#}
+    {#</li>#}
+    {#</ul>#}
 {% endblock %}
