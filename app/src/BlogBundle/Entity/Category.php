@@ -37,7 +37,7 @@ class Category extends BaseEntity
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent", cascade={"persist", "remove"})
      */
     private $children;
 
@@ -48,7 +48,7 @@ class Category extends BaseEntity
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="category", orphanRemoval=true)
      */
     private $posts;
 

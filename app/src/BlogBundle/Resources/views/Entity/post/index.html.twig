@@ -1,45 +1,28 @@
 {% extends 'BlogBundle::base.html.twig' %}
 
-{% block content %}
+{% block head %}
     <h1>Post list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Createat</th>
-                <th>Updateat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{% endblock %}
+{% block content %}
+    <div class="row">
         {% for post in posts %}
-            <tr>
-                <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.content }}</td>
-                <td>{% if post.createAt %}{{ post.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if post.updateAt %}{{ post.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('post_show', { 'id': post.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('post_edit', { 'id': post.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col-md-3">
+                <div class="item">
+                    <h2><a href="{{ path('post_show', {'id':post.id}) }}">{{ post.title|title }}</a></h2>
+                    <span class="small">{{ post.createAt|date('Y-m-d H:i:s') }}</span>
+                    {% if post.category %}
+                    <p>Category: <a href="{{ path('category_show',{'id':post.category.id}) }}" class="small">{{ post.category|title }}</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('post_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                    {% endif %}
+                    <p>
+                        <a href="{{ path('post_edit', {'id':post.id}) }}">Edit</a>
+                        <a href="{{ path('post_delete', {'id':post.id}) }}">Delete</a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-md-12">
+            <a class="btn btn-success" href="{{ path('post_new') }}">Create a new entry</a>
+        </div>
+    </div>
 {% endblock %}
