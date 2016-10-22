@@ -210,4 +210,11 @@ class Category extends BaseEntity
     {
         return $this->posts;
     }
+
+    function __toString()
+    {
+        return $this->getTitle();
+    }
+
+
 }
