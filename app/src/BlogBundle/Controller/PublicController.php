@@ -13,11 +13,8 @@ class PublicController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('BlogBundle:Category')->findBy([],[],5);
-        return $this->render('BlogBundle:Public:index.html.twig',[
-            'categories' => $categories
-        ]);
+
+        return $this->render('BlogBundle:Public:index.html.twig');
     }
 
     /**

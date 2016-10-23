@@ -1,0 +1,4 @@
+{% block field_widget %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('attributes') }} value="{{ value }}" />
+{% endblock field_widget %}

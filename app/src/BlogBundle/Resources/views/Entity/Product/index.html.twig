@@ -1,0 +1,53 @@
+{% extends 'BlogBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Список товарів</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Createat</th>
+            <th>Updateat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr style="margin-bottom: 15px">
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>
+                    {% if product.images|length > 0 %}
+                        <img src="{{ asset('upload/' ~ product.images[0]) }}" alt="{{ product.name|title }}">
+                        {% else %}
+                        <span class="text-danger">Немає зображення</span>
+                    {% endif %}
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{% if product.createAt %}{{ product.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if product.updateAt %}{{ product.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('product_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,27 +1,9 @@
 {% extends 'BlogBundle::base.html.twig' %}
+
 {% block head %}
-    <h1>Category</h1>
+    <h1>Index</h1>
 {% endblock %}
-{% block content %}
-    <div class="row">
-        {% for category in categories %}
-            <div class="col-md-12">
-                <div class="item">
-                    <h3><a href="{{ path('category_show',{'id':category.id}) }}">{{ category.title|title }}</a></h3>
-                    <p>{{ category.description }}</p>
-                    <p>{{ category.createAt|date('d-m-Y H:i:s') }}</p>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Posts</p>
-                        </div>
-                        {% for post in category.posts %}
-                            <div class="col-md-3">
-                                <h4><a href="{{ path('post_show',{'id':post.id}) }}">{{ post.title|title }}</a></h4>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+
+{% block body %}
+
 {% endblock %}

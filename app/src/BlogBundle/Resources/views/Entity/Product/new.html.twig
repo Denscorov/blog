@@ -1,0 +1,49 @@
+{% form_theme form 'BlogBundle:Form:field.html.twig' %}
+
+{% extends 'BlogBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Product creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.images) }}
+    <ul>
+        {% for image in form.images %}
+            <li>{{ form_row(image.file) }}</li>
+        {% endfor %}
+    </ul>
+    {#{{ form_widget(form.images.vars.form ) }}#}
+    <button type="button" id="add"><i class="fa fa-plus"></i></button>
+
+    <input type="submit" value="Create"/>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('product_index') }}">Back to the list</a>
+        </li>
+    </ul>
+
+    <script>
+
+        $(function () {
+            function strReplaceAll(string, Find, Replace) {
+                try {
+                    return string.replace(new RegExp(Find, "gi"), Replace);
+                } catch (ex) {
+                    return string;
+                }
+            }
+
+            var container = $('#product_images'), block = container.attr('data-prototype'), i = 0;
+            $('#add').click(function () {
+                var str = strReplaceAll(block, '__name__', i);
+                i = i + 1;
+                container.append(str);
+            })
+        });
+
+    </script>
+{% endblock %}
