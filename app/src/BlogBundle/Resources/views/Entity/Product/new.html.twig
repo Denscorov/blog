@@ -26,24 +26,4 @@
         </li>
     </ul>
 
-    <script>
-
-        $(function () {
-            function strReplaceAll(string, Find, Replace) {
-                try {
-                    return string.replace(new RegExp(Find, "gi"), Replace);
-                } catch (ex) {
-                    return string;
-                }
-            }
-
-            var container = $('#product_images'), block = container.attr('data-prototype'), i = 0;
-            $('#add').click(function () {
-                var str = strReplaceAll(block, '__name__', i);
-                i = i + 1;
-                container.append(str);
-            })
-        });
-
-    </script>
 {% endblock %}

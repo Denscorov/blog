@@ -89,6 +89,7 @@ class ProductController extends Controller
     public function editAction(Request $request, Product $product)
     {
 //        $deleteForm = $this->createDeleteForm($product);
+        var_dump($product->getImages()[0]);die;
         $editForm = $this->createForm('BlogBundle\Form\ProductType', $product);
         $editForm->handleRequest($request);
 

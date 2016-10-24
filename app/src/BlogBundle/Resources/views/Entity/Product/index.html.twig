@@ -21,8 +21,8 @@
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
                 <td>
                     {% if product.images|length > 0 %}
-                        <img src="{{ asset('upload/' ~ product.images[0]) }}" alt="{{ product.name|title }}">
-                        {% else %}
+                        <img width="50px" src="{{ asset('upload/' ~ product.images[0]) }}" alt="{{ product.name|title }}">
+                    {% else %}
                         <span class="text-danger">Немає зображення</span>
                     {% endif %}
                 </td>
@@ -31,23 +31,17 @@
                 <td>{% if product.createAt %}{{ product.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if product.updateAt %}{{ product.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('product_show', { 'id': product.id }) }}" class="btn-sm btn btn-default">show</a>
+                    <a href="{{ path('product_edit', { 'id': product.id }) }}" class="btn-sm btn btn-default">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('product_new') }}" class="btn btn-default">Create a new entry</a>
+        </div>
+    </div>
 {% endblock %}
