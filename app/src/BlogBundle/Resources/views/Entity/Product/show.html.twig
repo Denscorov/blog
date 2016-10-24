@@ -34,7 +34,7 @@
             <div class="row">
                 {% for image in product.images %}
                     <div class="col-md-3">
-                        <img src="{{ asset('upload/' ~ image.file) }}" alt="{{ image.file }}">
+                        <img src="{{ asset('upload/' ~ image.file) }}" alt="{{ image.file }}" width="100%">
                     </div>
                 {% endfor %}
             </div>
