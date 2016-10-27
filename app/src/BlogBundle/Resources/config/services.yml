@@ -1,3 +1,9 @@
 services:
     file.processor:
         class: BlogBundle\Processor\FileProcessor
+
+    blog.user.provider:
+        class: BlogBundle\Security\UserProvider
+
+    blog.user.pass.encoder:
+        class: BlogBundle\Security\PassEncoder

@@ -36,12 +36,6 @@ class Image extends BaseEntity
     private $file;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     */
-    private $product;
-
-    /**
      * Get id
      *
      * @return int
@@ -79,6 +73,4 @@ class Image extends BaseEntity
     {
         return $this->getFile();
     }
-
-
 }

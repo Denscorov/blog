@@ -36,8 +36,13 @@ class Product extends BaseEntity
      */
     private $price;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="product")
+     * @ORM\ManyToMany(targetEntity="Image")
+     * @ORM\JoinTable(name="product_images",
+     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $images;
 
@@ -108,6 +113,5 @@ class Product extends BaseEntity
     {
         return $this->price;
     }
-
 
 }
